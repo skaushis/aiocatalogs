@@ -1,0 +1,63 @@
+name = "aiocatalogs"
+main = "./packages/platforms/cloudflare/index.ts"
+
+compatibility_date = "2024-09-23"
+
+compatibility_flags = ["nodejs_compat", "nodejs_compat_populate_process_env"]
+
+# Observability
+[observability]
+enabled = true
+head_sampling_rate = 1 
+
+# ------------------------------
+# --- Production environment ---
+# ------------------------------
+
+# Production environment variables
+[vars]
+AIOCATALOGS_TRUSTED_ORIGINS = "https://aio.pantelx.com, https://aiocatalogs.jqrw92fchz.workers.dev" # comma-separated list of trusted origins
+AIOCATALOGS_API_RATE_LIMIT = true
+AIOCATALOGS_API_MAX_REQUESTS = 50 # requests per minute
+AIOCATALOGS_API_MAX_ITEMS_MDBLIST = 100 # maximum number of items fetched from MDBList API
+AIOCATALOGS_API_CACHE_EXPIRATION_RPDB = 30 # cache expiration time in days for RPDB API
+
+LOG_LEVEL = "info" # debug, info, warn, error, or none
+LOG_ENABLE_TIMESTAMPS = true
+LOG_TIMESTAMP_FORMAT = "dd.MM.yyyy HH:mm:ss"
+LOG_TIMEZONE = "Europe/Berlin"
+
+# D1-Database for the production environment
+[[d1_databases]]
+binding = "DB"
+database_name = "aiocatalogs-d1"
+database_id = "a65d87bc-71b0-4ba3-9487-7b39426c3f05"
+migrations_dir = "./packages/platforms/cloudflare/migrations"
+
+# -------------------------------
+# --- Development environment ---
+# -------------------------------
+
+# Development environment variables
+[env.dev.vars]
+AIOCATALOGS_TRUSTED_ORIGINS = "http://localhost:8787" # comma-separated list of trusted origins
+AIOCATALOGS_API_RATE_LIMIT = false
+AIOCATALOGS_API_MAX_REQUESTS = 5 # requests per minute
+AIOCATALOGS_API_MAX_ITEMS_MDBLIST = 10 # maximum number of items fetched from MDBList API
+AIOCATALOGS_API_CACHE_EXPIRATION_RPDB = 1 # cache expiration time in days for RPDB API
+
+LOG_LEVEL = "debug" # debug, info, warn, error, or none
+LOG_ENABLE_TIMESTAMPS = true
+LOG_TIMESTAMP_FORMAT = "dd.MM.yyyy HH:mm:ss"
+LOG_TIMEZONE = "Europe/Berlin"
+
+# D1-Database for the development environment
+[[env.dev.d1_databases]]
+binding = "DB"
+database_name = "aiocatalogs"
+database_id = "55f455b6-3bac-4b05-8292-6de60c26eb9d"
+migrations_dir = "./packages/platforms/cloudflare/migrations" 
+
+# Development port
+[dev]
+port = 8787
