@@ -1,7 +1,7 @@
 <div align="center"><img src="https://i.imgur.com/79eCVoA.png" alt="AIO Catalogs Logo"></div>
 <h1 align="center" id="title">AIOCatalogs</h1>
 <div align="center">
-
+2
 ![AIOCatalogs Logo](https://img.shields.io/badge/AIOCatalogs-Addon-blue?style=for-the-badge)
 ![Version](https://img.shields.io/github/v/release/pantelx/aiocatalogs?style=for-the-badge&label=Version)
 ![Checks](https://img.shields.io/github/check-runs/pantelx/aiocatalogs/main?style=for-the-badge&label=Checks)
